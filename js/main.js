@@ -9,6 +9,13 @@ const contenedorProductos = document.getElementById('productos__card-container')
 const carritoContainer = document.getElementById('carrito')
 // Carrito
 
+
+// TO-DO
+// actualizar la cantidad de productos segun la funcion manageQuantity()
+// Proceso de registro
+// Opiniones y reseñas, Hay un par de APIS para llenar eso no?
+// LAS SUGERENCIAS SON BIENVENIDAS
+
 const carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
 const productos = [{
@@ -16,6 +23,7 @@ const productos = [{
     nombre: 'Sr. domo',
     img: '',
     precio: 1000,
+    
     cantidad: 0
 },
 {
@@ -97,6 +105,12 @@ const mostrarProductos = (array) => {
         <h5>${producto.nombre}</h5>
         <p>$${producto.precio}</p>
         <button id='${producto.id}' class='btn__add-to-cart '>Agregar a carrito</button>
+
+        <div>
+            <button class='btn__less-product'>-</button>
+            <span class='product_quantity'>${producto.cantidad}</span>
+            <button class='btn__more-product'>+</button>
+        </div>
         `
         contenedorProductos.append(productoCard)
     }
@@ -145,8 +159,47 @@ const limpiarCarrito = () => {
 }
 
 
+
 mostrarProductos(productos)
 manageCartButtons()
 manageCart()
 removeCartItem()
 
+
+// Prueba de botones +/-
+const manageQuantity = () => {
+    const productQuantityDisplay = document.querySelectorAll('.product_quantity')
+    const botonesMas = document.querySelectorAll('.btn__more-product')
+    let cantidadActual = 0
+    for(let i = 0; i < botonesMas.length; i++) {
+        botonesMas[i].onclick = () => {
+            productQuantityDisplay[i].innerHTML = cantidadActual
+            cantidadActual++
+            console.log(productQuantityDisplay[i].innerHTML)
+        }
+    }
+}
+manageQuantity()
+
+// Puramente vibe de la pag
+const girarVinilos = () => {  
+
+    const buttonsVinil = document.querySelectorAll('.btn-slide')
+    const vinils = document.querySelectorAll('.vinilo')
+    const sound = document.getElementById('sound')
+    for(let i = 0; i < buttonsVinil.length; i++) {
+        buttonsVinil[i].onclick = () =>{
+            vinils[i].classList.toggle('girando')
+            if(sound.paused || sound.ended) {
+                sound.play()
+            } else {
+                sound.pause()
+                sound.currentTime = 0
+            }
+        }
+    }
+}
+
+
+
+girarVinilos()
