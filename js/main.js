@@ -11,7 +11,7 @@ const carritoContainer = document.getElementById('carrito')
 
 
 // TO-DO
-// actualizar la cantidad de productos segun la funcion manageQuantity()
+
 // Proceso de registro
 // Opiniones y reseñas, Hay un par de APIS para llenar eso no?
 // LAS SUGERENCIAS SON BIENVENIDAS
@@ -107,9 +107,9 @@ const mostrarProductos = (array) => {
         <button id='${producto.id}' class='btn__add-to-cart '>Agregar a carrito</button>
 
         <div>
-            <button class='btn__less-product'>-</button>
-            <span class='product_quantity'>${producto.cantidad}</span>
-            <button class='btn__more-product'>+</button>
+            <button class='btn__less-product' id='menos${producto.id}'>-</button>
+            <span class='product_quantity'>0</span>
+            <button class='btn__more-product' id='mas${producto.id}'>+</button>
         </div>
         `
         contenedorProductos.append(productoCard)
@@ -142,6 +142,7 @@ function addToCart(p) {
 
 
 const manageCartButtons = () => {
+    
     const botonesCarrito = document.getElementsByClassName('btn__add-to-cart')
     for(boton of botonesCarrito) {
         boton.onclick = (e) => {
@@ -158,6 +159,31 @@ const limpiarCarrito = () => {
     location.reload()
 }
 
+const manageQuantity = () => {
+    const displays = document.getElementsByClassName('product_quantity')
+    const botonesMas = document.getElementsByClassName('btn__more-product')
+    const botonesMenos = document.getElementsByClassName('btn__less-product')
+    for(boton of botonesMas) {
+        boton.onclick = (e) => {
+            const botonId = e.target.id
+            const productoSelec = productos.find((producto) => producto.id === parseInt(botonId[3]))
+            productoSelec.cantidad++
+            displays[productoSelec.id - 1].innerHTML = productoSelec.cantidad
+        }
+    }
+    
+    for(boton of botonesMenos) {
+        boton.onclick = (e) => {
+            const botonId = e.target.id
+            const productoSelec = productos.find((producto) => producto.id === parseInt(botonId[5]))
+            if(productoSelec.cantidad > 0){
+            productoSelec.cantidad--
+            displays[productoSelec.id - 1].innerHTML = productoSelec.cantidad
+            }
+        }
+    }
+    
+}
 
 
 mostrarProductos(productos)
@@ -165,21 +191,6 @@ manageCartButtons()
 manageCart()
 removeCartItem()
 
-
-// Prueba de botones +/-
-const manageQuantity = () => {
-    const productQuantityDisplay = document.querySelectorAll('.product_quantity')
-    const botonesMas = document.querySelectorAll('.btn__more-product')
-    let cantidadActual = 0
-    for(let i = 0; i < botonesMas.length; i++) {
-        botonesMas[i].onclick = () => {
-            productQuantityDisplay[i].innerHTML = cantidadActual
-            cantidadActual++
-            console.log(productQuantityDisplay[i].innerHTML)
-        }
-    }
-}
-manageQuantity()
 
 // Puramente vibe de la pag
 const girarVinilos = () => {  
