@@ -58,14 +58,8 @@ const productos = [{
 
 const manageCart = () => {
     
-    const carritoVacio = () => {
-        const textCart = document.createElement('p')
-        textCart.innerHTML = 'El carrito esta vacio'
-        carritoContainer.append(textCart)
-    }
-    const carritoLleno = () => {
-        
-        for(producto of carrito) {
+    if(carrito.length > 0) {
+        for(let producto of carrito) {
             let carritoItem = document.createElement('li')
             carritoItem.innerHTML = `
                 <p>${producto.nombre}</p>
@@ -75,9 +69,12 @@ const manageCart = () => {
             `
             carritoContainer.append(carritoItem)
         }
+    } else {
+        const textCart = document.createElement('p')
+        textCart.innerHTML = 'El carrito esta vacio'
+        carritoContainer.append(textCart)
     }
-
-    carrito.length > 0 ? carritoLleno() : carritoVacio()
+    removeCartItem()
 }
 
 // ESTA funcion no me convence, y por alguna razon no funciona a la primer, tengo que recargar la pagina antes 
@@ -90,10 +87,11 @@ const removeCartItem = () => {
             carritoContainer.innerHTML = ''
             carrito.length = 0
             carrito.push(...newCart)
-            manageCart()
-            location.reload()
+            // location.reload()
+            e.preventDefault()
         }
     }
+    
 }
 
 
@@ -102,6 +100,7 @@ const mostrarProductos = (array) => {
         let productoCard = document.createElement('div')
         productoCard.classList.add('product-card')
         productoCard.innerHTML = `
+        <img src='#' class='product-img'>
         <h5>${producto.nombre}</h5>
         <p>$${producto.precio}</p>
         <button id='${producto.id}' class='btn__add-to-cart '>Agregar a carrito</button>
@@ -187,6 +186,7 @@ const manageQuantity = () => {
 
 
 mostrarProductos(productos)
+manageQuantity()
 manageCartButtons()
 manageCart()
 removeCartItem()
@@ -214,3 +214,26 @@ const girarVinilos = () => {
 
 
 girarVinilos()
+
+// Reseñas random Utilizando API
+const resWrapper =  document.getElementById('reseñas-wrapper')
+
+const ReseñasGenerador = () => {
+    fetch('https://randomuser.me/api/?results=6')
+    .then((res) => res.json())
+    .then((data) => {
+        const usuariosArray = data.results
+        console.log(usuariosArray)
+
+        for(let usuario of usuariosArray) {
+            let userCard = document.createElement('div')
+            userCard.innerHTML = `
+                <img src='${usuario.picture.medium}' />
+                <h6>${usuario.name.first} ${usuario.name.last}</h6>
+                <p>Reseña aqui</p>
+            `
+            resWrapper.appendChild(userCard)
+        }
+    })
+}
+ReseñasGenerador()

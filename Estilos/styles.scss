@@ -1,118 +1,149 @@
 $padding: 2em;
+$color_main: #0c0c0c;
+$color_secondary: #EEDD59;
 
 body {
-    background-color: #0c0c0c;
-    color: #EEDD59;
-    .navbar {
-        background-color: #0c0c0c !important; 
-        padding: $padding;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $color_main;
+    color: $color_secondary;
+    .keen-slider__slide {
+        display: grid;
+        place-items: center;
     }
-    .keen-slider {
-        height: 500px;
-        background-color: white;
-        .number-slide1 {
-            background: url(../Recursos/imgs/13-lluvias.svg);
-        }
-        
-        .slider__grid {
-            border: 1px solid black;
-            height: 100%;
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, 50%);
-            color: #0c0c0c;
-            .slider__text-wrapper {
-                border: 1px solid red;
-                padding: $padding;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                
-                h3 {
-                    font-size: 2.7em;
-                    width: 50%;
-                }
-                p {
-                    font-weight: 600;
-                    width: 50%;
-                    margin-top: 2.5em;
-                    font-size: 1.3em;
-                }
+    .slider__grid {
+        padding-top: 3em;
+        display: grid;
+
+        .slider__button-wrapper {
+            position: relative;
+            .portada {
+                padding: 2px;
+                padding-top: 5em;
+                border: 1p solid red;
+                position: relative;
             }
-            .slider__button-wrapper {
-                border: 1px solid blue;
+            .vinilo {
+                position: absolute;
                 display: grid;
                 place-items: center;
-                .portada {
-                    height: 400px;
-                    
-                }
-                .vinilo {
-                    position: absolute;
-                    z-index: -1;
-                    height: 330px;
-                    right: 7%;
-                    
-                    
-                }
-                .vin1 {
-                    background: url(../Recursos/imgs/vinilo.png);
-                    background-repeat: no-repeat;
-                }
-                
+                z-index: -1;
+                top: 2em;
+                left: $padding;
+                width: 300px;
             }
         }
-        
+        .slider__text-wrapper {
+            order: 2;
+            color: $color_main;
+            padding: $padding;
+            display: grid;
+            // place-items: center;
+            h3 {
+                font-size: 2em;
+                text-align: center;
+                padding: $padding / 5;
+                order: 2;
+            }
+            p{
+                display: none;
+            }
+            button {
+                order: 1;
+                padding: $padding / 4;
+                border: none;
+                border-radius: 20px;
+                background-color: $color_main;
+                color: $color_secondary;
+                font-weight: 700;
+            }
+        }
+        img {
+            max-width: 100%;
+        }
+    }
+    .number-slide1 {
+        background-image: linear-gradient(
+        180deg,
+        hsl(78deg 86% 33%) 0%,
+        hsl(79deg 53% 42%) 11%,
+        hsl(79deg 39% 50%) 22%,
+        hsl(78deg 39% 57%) 33%,
+        hsl(78deg 39% 64%) 44%,
+        hsl(77deg 39% 71%) 56%,
+        hsl(76deg 39% 78%) 67%,
+        hsl(75deg 39% 85%) 78%,
+        hsl(75deg 39% 93%) 89%,
+        hsl(0deg 0% 100%) 100%);
+    }
+    .number-slide2 {
+        background-image: linear-gradient(
+        180deg,
+        hsl(22deg 50% 27%) 0%,
+        hsl(22deg 37% 35%) 11%,
+        hsl(21deg 28% 43%) 22%,
+        hsl(21deg 22% 51%) 33%,
+        hsl(21deg 23% 59%) 44%,
+        hsl(21deg 23% 67%) 56%,
+        hsl(20deg 24% 75%) 67%,
+        hsl(20deg 25% 83%) 78%,
+        hsl(20deg 25% 92%) 89%,
+        hsl(0deg 0% 100%) 100%);
+    }
+    .number-slide3 {
+        background-image: linear-gradient(
+  180deg,
+  hsl(360deg 78% 34%) 0%,
+  hsl(11deg 81% 37%) 11%,
+  hsl(19deg 84% 38%) 22%,
+  hsl(25deg 87% 40%) 33%,
+  hsl(30deg 89% 41%) 44%,
+  hsl(34deg 88% 43%) 56%,
+  hsl(38deg 84% 46%) 67%,
+  hsl(42deg 78% 48%) 78%,
+  hsl(46deg 75% 52%) 89%,
+  hsl(51deg 76% 55%) 100%
+);
+    }
+    .number-slide4 {
+        background-image: linear-gradient(
+        180deg,
+        hsl(207deg 5% 65%) 0%,
+        hsl(207deg 5% 68%) 11%,
+        hsl(207deg 5% 72%) 22%,
+        hsl(207deg 5% 76%) 33%,
+        hsl(207deg 5% 80%) 44%,
+        hsl(207deg 5% 84%) 56%,
+        hsl(207deg 5% 88%) 67%,
+        hsl(207deg 5% 92%) 78%,
+        hsl(207deg 5% 96%) 89%,
+        hsl(0deg 0% 100%) 100%);
     }
     .productos-wrapper {
         display: grid;
         place-items: center;
         .productos__title-container {
-            padding: $padding;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding-top: $padding;
         }
-        #productos__card-container {
-            border: 1px solid red;
-            overflow: none;
-            width: 70%;
+        .productos__card-container {
             display: grid;
-            grid-template-columns: repeat(2, auto);
-            
-
+            padding: $padding / 2;
             .product-card {
-                background-color: #EEDD59;
-                color: #0c0c0c;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-
+                width: 300px;
+                display: grid;
+                place-items: center;
                 padding: $padding / 2;
-                margin: 1em;
-                button {
-                    border-radius: .5em;
-                    border: none;
-                    padding: $padding / 4;
-
+                background-color: $color_secondary;
+                color: #2e2e2e;
+                font-weight: 600;
+                margin: .5em 0;
+                .product-img {
+                    background-color: #2e2e2e;
+                    width: 100%;
+                    height: 300px;
                 }
             }
-        }
-    }
-    #carrito {
-        padding: $padding / 2;
-        gap: .5em;
-        background-color: #EEDD59;
-        font-weight: 600;
-        border: 1px solid black;
-        li {
-            display: grid;
-            place-items: center;
-            border: 1px solid black;
-            padding: $padding / 4;
-            text-align: center;
-            margin: .5em 0;
         }
     }
 }
