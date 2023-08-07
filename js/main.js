@@ -7,53 +7,73 @@ const slider = new KeenSlider("#my-keen-slider", {
 // Elementos DOM
 const contenedorProductos = document.getElementById('productos__card-container')
 const carritoContainer = document.getElementById('carrito')
-// Carrito
 
 
 // TO-DO
 
 // Proceso de registro
-// Opiniones y reseñas, Hay un par de APIS para llenar eso no?
 // LAS SUGERENCIAS SON BIENVENIDAS
 
 const carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
+class Producto {
+    constructor(id, nombre, img, precio, categoria, cantidad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.img = `./Recursos/imgs/ProductosPNG/${img}.png`;
+        this.precio = precio;
+        this.categoria = categoria;
+        this.cantidad = cantidad;
+    }
+}
+
+const addProducto = (array, id, nombre, img, precio, categoria, cantidad) => {
+    const nuevoProducto = new Producto(id, nombre, img, precio, categoria, cantidad);
+    array.push(nuevoProducto)
+}
+
 const productos = [{
     id: 1, 
     nombre: 'Sr. domo',
-    img: '',
+    img: './Recursos/imgs/ProductosPNG/PortadaSrDomo.png',
     precio: 1000,
-    
+    categoria: 'discos',
     cantidad: 0
 },
 {
     id: 2, 
     nombre: 'Violenta Fotosintesis',
-    img: '',
+    img: './Recursos/imgs/ProductosPNG/PortadaViolentaFoto.png',
     precio: 1000,
+    categoria: 'discos',
     cantidad: 0
 },
 {
     id: 3, 
     nombre: 'Otoño animal',
-    img: '',
+    img: './Recursos/imgs/ProductosPNG/PortadOtoñoAnimal.png',
     precio: 1000,
+    categoria: 'discos',
     cantidad: 0
 },
 {
     id: 4, 
     nombre: '13 Lluvias de verano',
-    img: '',
+    img: './Recursos/imgs/ProductosPNG/Portada13lluvias.png',
     precio: 1000,
+    categoria: 'discos',
     cantidad: 0
 },
 {
     id: 5, 
-    nombre: 'rmera',
-    img: '',
+    nombre: 'Remera Sr. Domo',
+    img: './Recursos/imgs/ProductosPNG/Remerasrdomo.png',
     precio: 1000,
+    categoria: 'remeras',
     cantidad: 0
 },]
+
+addProducto(productos, 6, 'Remera 13 lluvias de verano', 'Remera13lluviasdv', 1200, 'remeras', 0)
 
 
 const manageCart = () => {
@@ -100,15 +120,17 @@ const mostrarProductos = (array) => {
         let productoCard = document.createElement('div')
         productoCard.classList.add('product-card')
         productoCard.innerHTML = `
-        <img src='#' class='product-img'>
+        <img src='${producto.img} ' class='product-img card-img-top'>
         <h5>${producto.nombre}</h5>
         <p>$${producto.precio}</p>
-        <button id='${producto.id}' class='btn__add-to-cart '>Agregar a carrito</button>
 
-        <div>
-            <button class='btn__less-product' id='menos${producto.id}'>-</button>
-            <span class='product_quantity'>0</span>
-            <button class='btn__more-product' id='mas${producto.id}'>+</button>
+        <div class='product-card__buttons'>
+            <div>
+                <button class='btn__less-product' id='menos${producto.id}'>-</button>
+                <span class='product_quantity'>0</span>
+                <button class='btn__more-product' id='mas${producto.id}'>+</button>
+            </div>
+            <button id='${producto.id}' class='btn__add-to-cart '>Add</button>
         </div>
         `
         contenedorProductos.append(productoCard)
@@ -197,16 +219,33 @@ const girarVinilos = () => {
 
     const buttonsVinil = document.querySelectorAll('.btn-slide')
     const vinils = document.querySelectorAll('.vinilo')
-    const sound = document.getElementById('sound')
+    // const sound = document.getElementById('sound')
+    const canciones = document.getElementsByClassName('canciones')
+    console.log(canciones)
     for(let i = 0; i < buttonsVinil.length; i++) {
         buttonsVinil[i].onclick = () =>{
-            vinils[i].classList.toggle('girando')
-            if(sound.paused || sound.ended) {
-                sound.play()
+            
+            // Canciones
+            if(canciones[i].paused || canciones[i].ended) {
+                for(let cancion of canciones) {
+                    cancion.pause()
+                }
+                canciones[i].play()
             } else {
-                sound.pause()
-                sound.currentTime = 0
+                canciones[i].pause()
+                canciones[i].currentTime = 0
             }
+            // Vinilos
+            function agregarClass() {
+                vinils[i].classList.add('girando')
+            }
+            function quitarClass() {
+                vinils[i].classList.remove('girando')
+            }
+            canciones[i].addEventListener('play', agregarClass)
+            canciones[i].addEventListener('pause', quitarClass)
+            canciones[i].addEventListener('ended', quitarClass)
+
         }
     }
 }
@@ -219,7 +258,7 @@ girarVinilos()
 const resWrapper =  document.getElementById('reseñas-wrapper')
 
 const ReseñasGenerador = () => {
-    fetch('https://randomuser.me/api/?results=6')
+    fetch('https://randomuser.me/api/?results=3')
     .then((res) => res.json())
     .then((data) => {
         const usuariosArray = data.results
@@ -232,6 +271,7 @@ const ReseñasGenerador = () => {
                 <h6>${usuario.name.first} ${usuario.name.last}</h6>
                 <p>Reseña aqui</p>
             `
+            userCard.classList.add('resCard')
             resWrapper.appendChild(userCard)
         }
     })

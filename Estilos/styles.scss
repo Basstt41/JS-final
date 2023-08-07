@@ -1,6 +1,20 @@
 $padding: 2em;
-$color_main: #0c0c0c;
+$color_main: #21262C;
 $color_secondary: #EEDD59;
+$color_3: #EBF4F4; 
+// Color testing
+
+$color1: #1e2328;
+$color4: #f1b522;
+
+$color2: #2a2e34;
+$color3: #3b3f46;
+$color5: #f3d035;
+
+
+
+
+@use 'sassFiles/__media-querys';
 
 body {
     margin: 0;
@@ -13,123 +27,77 @@ body {
         place-items: center;
     }
     .slider__grid {
-        padding-top: 3em;
+        padding-top: 1em;
         display: grid;
 
         .slider__button-wrapper {
             position: relative;
+            display: grid;
+            place-items: center;
             .portada {
                 padding: 2px;
-                padding-top: 5em;
-                border: 1p solid red;
+                padding-bottom: 2em;
                 position: relative;
+                width: 370px;
+                animation: portada-move-mobile 2s;   
             }
             .vinilo {
                 position: absolute;
                 display: grid;
                 place-items: center;
                 z-index: -1;
-                top: 2em;
-                left: $padding;
-                width: 300px;
+                bottom: -2em;
+                // left: $padding;
+                width: 310px !important;
+                
             }
         }
         .slider__text-wrapper {
             order: 2;
-            color: $color_main;
-            padding: $padding;
+            color: $color_3;
+            padding: 0 2em;
             display: grid;
-            // place-items: center;
+            place-items: center;
             h3 {
                 font-size: 2em;
                 text-align: center;
-                padding: $padding / 5;
-                order: 2;
+                // order: 2;
+                color: $color_secondary;
             }
             p{
-                display: none;
+                // order: 3;
+                text-align: center;
             }
             button {
-                order: 1;
-                padding: $padding / 4;
-                border: none;
-                border-radius: 20px;
-                background-color: $color_main;
+                border: 2px solid $color_secondary !important;
+                background-color: transparent;
                 color: $color_secondary;
-                font-weight: 700;
+                border-radius: 5px;
+                width: 50%;
+                padding: .5em;
+                // order: 1;
             }
         }
         img {
             max-width: 100%;
         }
     }
-    .number-slide1 {
-        background-image: linear-gradient(
-        180deg,
-        hsl(78deg 86% 33%) 0%,
-        hsl(79deg 53% 42%) 11%,
-        hsl(79deg 39% 50%) 22%,
-        hsl(78deg 39% 57%) 33%,
-        hsl(78deg 39% 64%) 44%,
-        hsl(77deg 39% 71%) 56%,
-        hsl(76deg 39% 78%) 67%,
-        hsl(75deg 39% 85%) 78%,
-        hsl(75deg 39% 93%) 89%,
-        hsl(0deg 0% 100%) 100%);
-    }
-    .number-slide2 {
-        background-image: linear-gradient(
-        180deg,
-        hsl(22deg 50% 27%) 0%,
-        hsl(22deg 37% 35%) 11%,
-        hsl(21deg 28% 43%) 22%,
-        hsl(21deg 22% 51%) 33%,
-        hsl(21deg 23% 59%) 44%,
-        hsl(21deg 23% 67%) 56%,
-        hsl(20deg 24% 75%) 67%,
-        hsl(20deg 25% 83%) 78%,
-        hsl(20deg 25% 92%) 89%,
-        hsl(0deg 0% 100%) 100%);
-    }
-    .number-slide3 {
-        background-image: linear-gradient(
-  180deg,
-  hsl(360deg 78% 34%) 0%,
-  hsl(11deg 81% 37%) 11%,
-  hsl(19deg 84% 38%) 22%,
-  hsl(25deg 87% 40%) 33%,
-  hsl(30deg 89% 41%) 44%,
-  hsl(34deg 88% 43%) 56%,
-  hsl(38deg 84% 46%) 67%,
-  hsl(42deg 78% 48%) 78%,
-  hsl(46deg 75% 52%) 89%,
-  hsl(51deg 76% 55%) 100%
-);
-    }
-    .number-slide4 {
-        background-image: linear-gradient(
-        180deg,
-        hsl(207deg 5% 65%) 0%,
-        hsl(207deg 5% 68%) 11%,
-        hsl(207deg 5% 72%) 22%,
-        hsl(207deg 5% 76%) 33%,
-        hsl(207deg 5% 80%) 44%,
-        hsl(207deg 5% 84%) 56%,
-        hsl(207deg 5% 88%) 67%,
-        hsl(207deg 5% 92%) 78%,
-        hsl(207deg 5% 96%) 89%,
-        hsl(0deg 0% 100%) 100%);
-    }
+
     .productos-wrapper {
         display: grid;
         place-items: center;
         .productos__title-container {
             padding-top: $padding;
+            color: $color_3;
+            display: grid;
+            place-items: center;
         }
         .productos__card-container {
             display: grid;
             padding: $padding / 2;
             .product-card {
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                border-radius: 5px;
                 width: 300px;
                 display: grid;
                 place-items: center;
@@ -139,10 +107,46 @@ body {
                 font-weight: 600;
                 margin: .5em 0;
                 .product-img {
-                    background-color: #2e2e2e;
+                    // background-color: #2e2e2e;
                     width: 100%;
-                    height: 300px;
                 }
+                .product-card__buttons {
+                    display: flex;
+                    width: 60%;
+                    padding: $padding / 4;
+                    justify-content: space-between;
+                    align-items: center;
+                    
+                    button {
+                        font-weight: 600;
+                        border: none;
+                        border-radius: 10px;
+                        padding: $padding / 4;
+                        color: $color_main;
+                        background-color: $color_3;
+                    }
+                }
+            }
+        }
+    }
+    .reseñas-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin: 2em;
+        div {
+            background-color: $color_secondary;
+            color: $color_main;
+            display: grid;
+            place-items: center;
+            height: 200px;
+            width: 120px;
+            text-align: center;
+            padding: $padding / 2;
+            img {
+                border-radius: 50%;
             }
         }
     }
@@ -150,6 +154,11 @@ body {
 
 .girando {
     animation: girarContinuamente 2s linear infinite;
+}
+
+
+.portada-animacion {
+    animation: portada-move-mobile 2s;
 }
 
 @keyframes girarContinuamente {
@@ -160,3 +169,4 @@ body {
       transform: rotate(360deg); // Rotación final (360 grados)
     }
 }
+
