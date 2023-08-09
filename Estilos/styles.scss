@@ -4,14 +4,6 @@ $color_secondary: #EEDD59;
 $color_3: #EBF4F4; 
 // Color testing
 
-$color1: #1e2328;
-$color4: #f1b522;
-
-$color2: #2a2e34;
-$color3: #3b3f46;
-$color5: #f3d035;
-
-
 
 
 @use 'sassFiles/__media-querys';
@@ -38,8 +30,7 @@ body {
                 padding: 2px;
                 padding-bottom: 2em;
                 position: relative;
-                width: 370px;
-                animation: portada-move-mobile 2s;   
+                width: 370px ;
             }
             .vinilo {
                 position: absolute;
@@ -48,7 +39,7 @@ body {
                 z-index: -1;
                 bottom: -2em;
                 // left: $padding;
-                width: 310px !important;
+                width: 310px ;
                 
             }
         }
@@ -91,6 +82,18 @@ body {
             color: $color_3;
             display: grid;
             place-items: center;
+            form {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                align-items: center;
+                grid-gap: 1.3em;
+                fieldset {
+                    display: grid;
+                    grid-template-columns: 90% auto;
+                    font-size: 1.2rem;
+                    align-items: center;
+                }
+            }
         }
         .productos__card-container {
             display: grid;
@@ -106,26 +109,24 @@ body {
                 color: #2e2e2e;
                 font-weight: 600;
                 margin: .5em 0;
+                text-align: center;
                 .product-img {
                     // background-color: #2e2e2e;
-                    width: 100%;
+                    width: 250px;
+                    
                 }
                 .product-card__buttons {
-                    display: flex;
-                    width: 60%;
-                    padding: $padding / 4;
-                    justify-content: space-between;
-                    align-items: center;
-                    
+                    padding: 1em 0;
                     button {
-                        font-weight: 600;
+                        padding: .5em 1em;
                         border: none;
                         border-radius: 10px;
-                        padding: $padding / 4;
-                        color: $color_main;
-                        background-color: $color_3;
+                        font-weight: 600;
+                        background-color: $color_main;
+                        color: $color_3;
                     }
                 }
+                
             }
         }
     }

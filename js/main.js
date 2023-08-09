@@ -1,8 +1,16 @@
 // Libreria slider
 const slider = new KeenSlider("#my-keen-slider", {
-    loop: false,
+    loop: true,
 })
 
+let productos = []
+
+fetch("./js/componentes-js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = [...data]
+        mostrarProductos(productos)
+})
 
 // Elementos DOM
 const contenedorProductos = document.getElementById('productos__card-container')
@@ -11,8 +19,15 @@ const carritoContainer = document.getElementById('carrito')
 
 // TO-DO
 
-// Proceso de registro
+// Proceso de registro || no estoy seguro de terminarlo antes de la entrega final
+// Rediseño de la ruta del carrito: Add-to-cart => swal con cantidad y foto extra(o no), descripcion, etc => carrito
+// Completar scss para version desktop
+// Acomodar las imagenes de portada
+// Botones para el slider en desktop 
 // LAS SUGERENCIAS SON BIENVENIDAS
+
+
+
 
 const carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
@@ -32,48 +47,8 @@ const addProducto = (array, id, nombre, img, precio, categoria, cantidad) => {
     array.push(nuevoProducto)
 }
 
-const productos = [{
-    id: 1, 
-    nombre: 'Sr. domo',
-    img: './Recursos/imgs/ProductosPNG/PortadaSrDomo.png',
-    precio: 1000,
-    categoria: 'discos',
-    cantidad: 0
-},
-{
-    id: 2, 
-    nombre: 'Violenta Fotosintesis',
-    img: './Recursos/imgs/ProductosPNG/PortadaViolentaFoto.png',
-    precio: 1000,
-    categoria: 'discos',
-    cantidad: 0
-},
-{
-    id: 3, 
-    nombre: 'Otoño animal',
-    img: './Recursos/imgs/ProductosPNG/PortadOtoñoAnimal.png',
-    precio: 1000,
-    categoria: 'discos',
-    cantidad: 0
-},
-{
-    id: 4, 
-    nombre: '13 Lluvias de verano',
-    img: './Recursos/imgs/ProductosPNG/Portada13lluvias.png',
-    precio: 1000,
-    categoria: 'discos',
-    cantidad: 0
-},
-{
-    id: 5, 
-    nombre: 'Remera Sr. Domo',
-    img: './Recursos/imgs/ProductosPNG/Remerasrdomo.png',
-    precio: 1000,
-    categoria: 'remeras',
-    cantidad: 0
-},]
 
-addProducto(productos, 6, 'Remera 13 lluvias de verano', 'Remera13lluviasdv', 1200, 'remeras', 0)
+
 
 
 const manageCart = () => {
@@ -102,13 +77,13 @@ const removeCartItem = () => {
     const removeBtns = document.querySelectorAll('.remove-btn')
     for(boton of removeBtns) {
         boton.onclick = (e) => {
-            const newCart = carrito.filter((producto) => producto.id !== parseInt(e.target.id))
-            localStorage.setItem('carrito', JSON.stringify(newCart))
+            const productoId =  parseInt(e.target.id)
+            const indexProducto = carrito.findIndex(prod => prod.id === productoId)
+            const carritoContainer = document.getElementById('carrito')
+            carrito.splice(indexProducto, 1)
+            localStorage.setItem('carrito', JSON.stringify(carrito))
             carritoContainer.innerHTML = ''
-            carrito.length = 0
-            carrito.push(...newCart)
-            // location.reload()
-            e.preventDefault()
+            manageCart()
         }
     }
     
@@ -125,11 +100,6 @@ const mostrarProductos = (array) => {
         <p>$${producto.precio}</p>
 
         <div class='product-card__buttons'>
-            <div>
-                <button class='btn__less-product' id='menos${producto.id}'>-</button>
-                <span class='product_quantity'>0</span>
-                <button class='btn__more-product' id='mas${producto.id}'>+</button>
-            </div>
             <button id='${producto.id}' class='btn__add-to-cart '>Add</button>
         </div>
         `
@@ -154,8 +124,7 @@ function addToCart(p) {
     respuesta === true ? addMore() : addProd()
     swal({
         icon: 'success',
-        text: `Se agrego ${p.nombre} al carrito`,
-        timer: 1000
+        title: `Se agrego ${p.nombre}`
     }) 
     manageCart()
 }
@@ -180,38 +149,41 @@ const limpiarCarrito = () => {
     location.reload()
 }
 
-const manageQuantity = () => {
-    const displays = document.getElementsByClassName('product_quantity')
-    const botonesMas = document.getElementsByClassName('btn__more-product')
-    const botonesMenos = document.getElementsByClassName('btn__less-product')
-    for(boton of botonesMas) {
-        boton.onclick = (e) => {
-            const botonId = e.target.id
-            const productoSelec = productos.find((producto) => producto.id === parseInt(botonId[3]))
-            productoSelec.cantidad++
-            displays[productoSelec.id - 1].innerHTML = productoSelec.cantidad
-        }
-    }
-    
-    for(boton of botonesMenos) {
-        boton.onclick = (e) => {
-            const botonId = e.target.id
-            const productoSelec = productos.find((producto) => producto.id === parseInt(botonId[5]))
-            if(productoSelec.cantidad > 0){
-            productoSelec.cantidad--
-            displays[productoSelec.id - 1].innerHTML = productoSelec.cantidad
+//Filtro?? 
+const filtrar = () => {
+    const radioBtns = document.querySelectorAll('input[type="radio"]')
+    radioBtns.forEach((filtro) => {
+        filtro.addEventListener('change', function(){
+            const productosContainer = document.getElementById('productos__card-container')
+            if(filtro.checked) {
+                productosContainer.innerHTML = ''
+                const filtroSeleccionado = filtro.id
+                const prodRemeras = productos.filter(prod => prod.categoria === 'remeras')
+                const prodDiscos = productos.filter(prod => prod.categoria === 'discos')
+                const prodPuas = productos.filter(prod => prod.categoria === 'puas')
+                //console.log(prodDiscos)
+
+                switch(filtroSeleccionado) {
+                    case 'filtro_remera':
+                        mostrarProductos(prodRemeras)
+                        
+                        break
+                    case 'filtro_discos':
+                        mostrarProductos(prodDiscos)
+                        break
+                    case 'filtro_puas':
+                        mostrarProductos(prodPuas)
+                        break
+                    case 'filtro_todos': 
+                        mostrarProductos(productos)
+                }
+                manageCartButtons()
+                
             }
-        }
-    }
-    
+        })
+    })
 }
 
-
-mostrarProductos(productos)
-manageQuantity()
-manageCartButtons()
-manageCart()
-removeCartItem()
 
 
 // Puramente vibe de la pag
@@ -257,12 +229,13 @@ girarVinilos()
 // Reseñas random Utilizando API
 const resWrapper =  document.getElementById('reseñas-wrapper')
 
-const ReseñasGenerador = () => {
-    fetch('https://randomuser.me/api/?results=3')
-    .then((res) => res.json())
+//Creo que no esta bien esta funcion, pero anda. no lo se.
+const ReseñasGenerador = async () => {
+    await fetch('https://randomuser.me/api/?results=3')
+    .then((res) =>  res.json())
     .then((data) => {
         const usuariosArray = data.results
-        console.log(usuariosArray)
+       // console.log(usuariosArray)
 
         for(let usuario of usuariosArray) {
             let userCard = document.createElement('div')
@@ -276,4 +249,11 @@ const ReseñasGenerador = () => {
         }
     })
 }
+
+
+
+manageCartButtons()
+manageCart()
+removeCartItem()
+filtrar()
 ReseñasGenerador()

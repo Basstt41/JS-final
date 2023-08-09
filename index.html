@@ -11,7 +11,7 @@
 <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Lagartoga</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,6 +39,7 @@
             </div>
         </nav>
         <!-- FIN NAV BAR -->
+        <span>Desliza =></span>
         <!-- SLIDER -->
         <div id="my-keen-slider" class="keen-slider">
             <div class="keen-slider__slide number-slide1">
@@ -60,7 +61,7 @@
                 <div class="slider__grid">
                     <div class="slider__text-wrapper">
                         <h3>Dias Largos</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, sed!</p>
+                        <p>Quiero morir para volver a nacer en otro ser. </p>
                         <button class="btn-slide"><i class="fa-solid fa-circle-play"></i></button>
                     </div>
                     <div class="slider__button-wrapper">
@@ -75,7 +76,7 @@
                 <div class="slider__grid">
                     <div class="slider__text-wrapper">
                         <h3>3</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, sed!</p>
+                        <p>La Chimenea, desde el techo, me quema los ojos y no puedo ver la calle desierta. </p>
                         <button class="btn-slide"><i class="fa-solid fa-circle-play"></i></button>
                     </div>
                     <div class="slider__button-wrapper">
@@ -90,7 +91,7 @@
                 <div class="slider__grid">
                     <div class="slider__text-wrapper">
                         <h3>4</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, sed!</p>
+                        <p>En busca del Pantano Verde que les permita un buen sepelio de amor</p>
                         <button class="btn-slide"><i class="fa-solid fa-circle-play"></i></button>
                     </div>
                     <div class="slider__button-wrapper">
@@ -106,14 +107,27 @@
         <section class="productos-wrapper">
             <div class="productos__title-container">
                 <h2>Productos</h2>
-                <div class="filtros">
-                    <label for="filtro_remera">Remeras</label>
-                    <input type="checkbox" id="filtro_remera" name="filtro_remera">
-                    <label for="filtro_remera">Discos</label>
-                    <input type="checkbox" id="filtro_discos" name="filtro_discos">
-                    <label for="filtro_remera">Puas</label>
-                    <input type="checkbox" id="filtro_puas" name="filtro_puas">
-                </div>
+                <form class="filtros">
+                    <fieldset>
+                        <label for="filtro_remera">Remeras</label>
+                        <input type="radio" id="filtro_remera" name="filtro">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="filtro_remera">Discos</label>
+                        <input type="radio" id="filtro_discos" name="filtro">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="filtro_remera">Puas</label>
+                        <input type="radio" id="filtro_puas" name="filtro">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="filtro_todos">Todos</label>
+                        <input type="radio" id="filtro_todos" name="filtro" checked>
+                    </fieldset>
+                </form>
             </div>
             <div id="productos__card-container" class="productos__card-container">
                 

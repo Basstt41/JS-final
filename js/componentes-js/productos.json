@@ -1,0 +1,83 @@
+[
+    {
+    "id": 1, 
+    "nombre": "Sr. domo",
+    "img": "./Recursos/imgs/ProductosPNG/PortadaSrDomo.png",
+    "precio": "1000",
+    "categoria": "discos",
+    "cantidad": 0
+},
+{
+    "id": 2, 
+    "nombre": "Violenta Fotosintesis",
+    "img": "./Recursos/imgs/ProductosPNG/PortadaViolentaFoto.png",
+    "precio": 1000,
+    "categoria": "discos",
+    "cantidad": 0
+},
+{
+    "id": 3, 
+    "nombre": "Otoño animal",
+    "img": "./Recursos/imgs/ProductosPNG/PortadOtoñoAnimal.png",
+    "precio": 1000,
+    "categoria": "discos",
+    "cantidad": 0
+},
+{
+    "id": 4, 
+    "nombre": "13 Lluvias de verano",
+    "img": "./Recursos/imgs/ProductosPNG/Portada13lluvias.png",
+    "precio": 1000,
+    "categoria": "discos",
+    "cantidad": 0
+},
+{
+    "id": 5, 
+    "nombre": "Remera Sr. Domo",
+    "img": "./Recursos/imgs/ProductosPNG/Remerasrdomo.png",
+    "precio": 1000,
+    "categoria": "remeras",
+    "cantidad": 0
+},
+{
+    "id": 6, 
+    "nombre": "Remera Violenta Fotosintesis",
+    "img": "./Recursos/imgs/ProductosPNG/Remerav.fotosintesis.png",
+    "precio": 1000,
+    "categoria": "remeras",
+    "cantidad": 0
+},
+{
+    "id": 7, 
+    "nombre": "Remera Otoño Animal",
+    "img": "./Recursos/imgs/ProductosPNG/Remeraotoñoanimal.png",
+    "precio": 1000,
+    "categoria": "remeras",
+    "cantidad": 0
+},
+{
+    "id": 8, 
+    "nombre": "Remera 13 Lluvias de Vernano",
+    "img": "./Recursos/imgs/ProductosPNG/Remera13lluviasdv.png",
+    "precio": 1000,
+    "categoria": "remeras",
+    "cantidad": 0
+},
+{
+    "id": 9, 
+    "nombre": "Púa Sr. Domo",
+    "img": "./Recursos/imgs/ProductosPNG/Púasrdomo.png",
+    "precio": 1000,
+    "categoria": "puas",
+    "cantidad": 0
+},
+{
+    "id": 10, 
+    "nombre": "Púa Violenta Fotosintesis",
+    "img": "./Recursos/imgs/ProductosPNG/Púaviolentafotosintesis.png",
+    "precio": 1000,
+    "categoria": "puas",
+    "cantidad": 0
+}
+
+]
