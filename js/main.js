@@ -9,7 +9,9 @@ fetch("./js/componentes-js/productos.json")
     .then(response => response.json())
     .then(data => {
         productos = [...data]
-        mostrarProductos(productos)
+        mostrarProductos(productos)        
+        manageCartButtons()
+        manageCart()
 })
 
 // Elementos DOM
@@ -124,7 +126,8 @@ function addToCart(p) {
     respuesta === true ? addMore() : addProd()
     swal({
         icon: 'success',
-        title: `Se agrego ${p.nombre}`
+        title: `Se agrego ${p.nombre}`,
+        timer: 1500 
     }) 
     manageCart()
 }
