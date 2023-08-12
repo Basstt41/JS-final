@@ -52,9 +52,9 @@ body {
   background-color: #21262C;
   color: #EEDD59;
 }
-body .keen-slider__slide {
-  display: grid;
-  place-items: center;
+body .carousel-indicators {
+  position: absolute !important;
+  margin: -2em 0;
 }
 body .slider__grid {
   padding-top: 1em;
@@ -76,7 +76,6 @@ body .slider__grid .slider__button-wrapper .vinilo {
   display: grid;
   place-items: center;
   z-index: -1;
-  bottom: -2em;
   width: 310px;
 }
 body .slider__grid .slider__text-wrapper {
@@ -181,11 +180,13 @@ body .reseñas-wrapper div img {
 }
 
 .girando {
+  position: relative;
+  top: 130px;
   animation: girarContinuamente 2s linear infinite;
 }
 
-.portada-animacion {
-  animation: portada-move-mobile 2s;
+.vinilo-move {
+  transform: translateY(100px);
 }
 
 @keyframes girarContinuamente {

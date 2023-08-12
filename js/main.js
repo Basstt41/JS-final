@@ -1,8 +1,3 @@
-// Libreria slider
-const slider = new KeenSlider("#my-keen-slider", {
-    loop: true,
-})
-
 let productos = []
 
 fetch("./js/componentes-js/productos.json")
@@ -85,7 +80,6 @@ const removeCartItem = () => {
             carrito.splice(indexProducto, 1)
             localStorage.setItem('carrito', JSON.stringify(carrito))
             carritoContainer.innerHTML = ''
-            manageCart()
         }
     }
     
@@ -112,7 +106,6 @@ const mostrarProductos = (array) => {
 
 function addToCart(p) {
     const respuesta = carrito.includes(p)
-    
     const addMore = () => {
         const productoActual = carrito.find((producto) => producto === p)
         productoActual.cantidad ++
@@ -149,7 +142,6 @@ const manageCartButtons = () => {
 
 const limpiarCarrito = () => {
     localStorage.clear()
-    location.reload()
 }
 
 //Filtro?? 
@@ -196,7 +188,6 @@ const girarVinilos = () => {
     const vinils = document.querySelectorAll('.vinilo')
     // const sound = document.getElementById('sound')
     const canciones = document.getElementsByClassName('canciones')
-    console.log(canciones)
     for(let i = 0; i < buttonsVinil.length; i++) {
         buttonsVinil[i].onclick = () =>{
             
@@ -216,6 +207,7 @@ const girarVinilos = () => {
             }
             function quitarClass() {
                 vinils[i].classList.remove('girando')
+
             }
             canciones[i].addEventListener('play', agregarClass)
             canciones[i].addEventListener('pause', quitarClass)
@@ -227,18 +219,18 @@ const girarVinilos = () => {
 
 
 
-girarVinilos()
+
 
 // Reseñas random Utilizando API
 const resWrapper =  document.getElementById('reseñas-wrapper')
 
 //Creo que no esta bien esta funcion, pero anda. no lo se.
-const ReseñasGenerador = async () => {
+//Por otra parte, si conoce alguna API que se aplique mejor a esta idea me vendria bien 
+const reseñasGenerador = async () => {
     await fetch('https://randomuser.me/api/?results=3')
     .then((res) =>  res.json())
     .then((data) => {
         const usuariosArray = data.results
-       // console.log(usuariosArray)
 
         for(let usuario of usuariosArray) {
             let userCard = document.createElement('div')
@@ -254,9 +246,9 @@ const ReseñasGenerador = async () => {
 }
 
 
-
 manageCartButtons()
 manageCart()
 removeCartItem()
 filtrar()
-ReseñasGenerador()
+girarVinilos()
+reseñasGenerador()

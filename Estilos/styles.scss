@@ -14,9 +14,9 @@ body {
     box-sizing: border-box;
     background-color: $color_main;
     color: $color_secondary;
-    .keen-slider__slide {
-        display: grid;
-        place-items: center;
+    .carousel-indicators {
+        position: absolute !important;
+        margin: -2em 0;
     }
     .slider__grid {
         padding-top: 1em;
@@ -37,10 +37,9 @@ body {
                 display: grid;
                 place-items: center;
                 z-index: -1;
-                bottom: -2em;
+                // bottom: -2em;
                 // left: $padding;
                 width: 310px ;
-                
             }
         }
         .slider__text-wrapper {
@@ -154,20 +153,25 @@ body {
 }
 
 .girando {
+    position: relative;
+    top: 130px;
     animation: girarContinuamente 2s linear infinite;
 }
 
 
-.portada-animacion {
-    animation: portada-move-mobile 2s;
+
+.vinilo-move {
+    transform: translateY(100px);
 }
 
 @keyframes girarContinuamente {
     from {
-      transform: rotate(0deg); // Rotación inicial (0 grados)
+        transform: rotate(0deg); // Rotación inicial (0 grados)
+        
     }
     to {
       transform: rotate(360deg); // Rotación final (360 grados)
     }
 }
+
 
