@@ -14,6 +14,39 @@ body {
     box-sizing: border-box;
     background-color: $color_main;
     color: $color_secondary;
+    #carrito{
+        background-color: $color_3;
+        text-align: center;
+        font-weight: 500;
+        li{
+            border-radius: 5px;
+            padding: .5em;
+            display: grid;
+            place-items: center;
+            margin: .5em;
+            background-color: $color_secondary;
+            .cart__tarjeta {
+                display: grid;
+                place-items: center;
+                text-align: center;
+                .cart__precio-cantidad {
+                    display: flex;
+                    gap: 1em;
+                    align-items: center;
+                    justify-content: center;
+                    .cart__precio {
+                        font-weight: bold;
+                    }
+                }
+            }
+            button {
+                border: none;
+                border-radius: 5px;
+                padding: .3em 1.5em;
+                font-weight: bold;
+            }
+        }
+    }
     .carousel-indicators {
         position: absolute !important;
         margin: -2em 0;
@@ -81,6 +114,7 @@ body {
             color: $color_3;
             display: grid;
             place-items: center;
+            padding: 5em 0;
             form {
                 display: grid;
                 grid-template-columns: repeat(2, 50%);
@@ -129,25 +163,41 @@ body {
             }
         }
     }
+    .reseñas-title {
+        background-color: transparent;
+        color: $color_3;
+        text-align: center;
+        padding: $padding;
+    }
     .reseñas-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
+        display: grid;
+        place-items: center;
         gap: 1em;
-        margin: 2em;
+        margin-bottom: 2em;
+        padding: 3em 0;
         div {
             background-color: $color_secondary;
             color: $color_main;
             display: grid;
             place-items: center;
-            height: 200px;
-            width: 120px;
             text-align: center;
+            grid-gap: 2em;
             padding: $padding / 2;
+            width: 270px;
+            border-radius: 5px;
             img {
                 border-radius: 50%;
+                width: 50%;
             }
+        }
+    }
+    footer {
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            list-style: none;
+            padding: $padding;
         }
     }
 }

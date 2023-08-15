@@ -54,9 +54,13 @@ const manageCart = () => {
         for(let producto of carrito) {
             let carritoItem = document.createElement('li')
             carritoItem.innerHTML = `
-                <p>${producto.nombre}</p>
-                <p>${(producto.precio * producto.cantidad)}</p>
-                <p>${producto.cantidad}</p>
+                <div class="cart__tarjeta">
+                    <h6>${producto.nombre}</h6>
+                    <div class="cart__precio-cantidad">
+                        <p class="cart__precio">$${(producto.precio * producto.cantidad)}</p>
+                        <p>${producto.cantidad}</p>
+                    </div>
+                </div>
                 <button class='remove-btn' id='${producto.id}'>Quitar</button>
             `
             carritoContainer.append(carritoItem)
@@ -80,6 +84,7 @@ const removeCartItem = () => {
             carrito.splice(indexProducto, 1)
             localStorage.setItem('carrito', JSON.stringify(carrito))
             carritoContainer.innerHTML = ''
+            manageCart()
         }
     }
     
@@ -237,7 +242,7 @@ const reseñasGenerador = async () => {
             userCard.innerHTML = `
                 <img src='${usuario.picture.medium}' />
                 <h6>${usuario.name.first} ${usuario.name.last}</h6>
-                <p>Reseña aqui</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, illo.</p>
             `
             userCard.classList.add('resCard')
             resWrapper.appendChild(userCard)
@@ -247,7 +252,6 @@ const reseñasGenerador = async () => {
 
 
 manageCartButtons()
-manageCart()
 removeCartItem()
 filtrar()
 girarVinilos()

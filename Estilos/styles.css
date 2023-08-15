@@ -4,7 +4,6 @@
     grid-template-columns: repeat(2, 50%);
     width: 100%;
     height: 80vh;
-    border: 1px solid red;
   }
   body .slider__grid .slider__button-wrapper {
     order: 1;
@@ -25,8 +24,8 @@
     order: 2;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
     justify-content: left;
+    margin: 4em 0;
   }
   body .slider__grid .slider__text-wrapper h3 {
     font-size: 4em !important;
@@ -35,7 +34,7 @@
   }
   body .slider__grid .slider__text-wrapper p {
     display: block !important;
-    width: 35%;
+    width: 40%;
   }
   body form {
     grid-template-columns: repeat(4, 25%) !important;
@@ -44,6 +43,9 @@
     grid-template-columns: repeat(3, auto);
     grid-gap: 2em;
   }
+  body .reseñas-wrapper {
+    grid-template-columns: repeat(3, auto);
+  }
 }
 body {
   margin: 0;
@@ -51,6 +53,39 @@ body {
   box-sizing: border-box;
   background-color: #21262C;
   color: #EEDD59;
+}
+body #carrito {
+  background-color: #EBF4F4;
+  text-align: center;
+  font-weight: 500;
+}
+body #carrito li {
+  border-radius: 5px;
+  padding: 0.5em;
+  display: grid;
+  place-items: center;
+  margin: 0.5em;
+  background-color: #EEDD59;
+}
+body #carrito li .cart__tarjeta {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+body #carrito li .cart__tarjeta .cart__precio-cantidad {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+body #carrito li .cart__tarjeta .cart__precio-cantidad .cart__precio {
+  font-weight: bold;
+}
+body #carrito li button {
+  border: none;
+  border-radius: 5px;
+  padding: 0.3em 1.5em;
+  font-weight: bold;
 }
 body .carousel-indicators {
   position: absolute !important;
@@ -113,6 +148,7 @@ body .productos-wrapper .productos__title-container {
   color: #EBF4F4;
   display: grid;
   place-items: center;
+  padding: 5em 0;
 }
 body .productos-wrapper .productos__title-container form {
   display: grid;
@@ -157,26 +193,40 @@ body .productos-wrapper .productos__card-container .product-card .product-card__
   background-color: #21262C;
   color: #EBF4F4;
 }
+body .reseñas-title {
+  background-color: transparent;
+  color: #EBF4F4;
+  text-align: center;
+  padding: 2em;
+}
 body .reseñas-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: grid;
+  place-items: center;
   gap: 1em;
-  margin: 2em;
+  margin-bottom: 2em;
+  padding: 3em 0;
 }
 body .reseñas-wrapper div {
   background-color: #EEDD59;
   color: #21262C;
   display: grid;
   place-items: center;
-  height: 200px;
-  width: 120px;
   text-align: center;
+  grid-gap: 2em;
   padding: 1em;
+  width: 270px;
+  border-radius: 5px;
 }
 body .reseñas-wrapper div img {
   border-radius: 50%;
+  width: 50%;
+}
+body footer ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+  padding: 2em;
 }
 
 .girando {
